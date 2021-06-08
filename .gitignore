@@ -1,0 +1,13 @@
+etc/
+var/
+elpa/
+packages/
+autosave/
+places
+bookmarks
+org-roam.db
+projectile-bookmarks.eld
+tramp
+transient/
+url/
+eshell/
