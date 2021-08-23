@@ -69,19 +69,49 @@
   :config
   (theme-magic-export-theme-mode))
 
-(use-package ivy
-  :diminish
-  :bind (("C-s" . swiper))
+(use-package vertico
+  :custom
+  (vertico-cycle t) ;; Wrap around after reaching the last completion candidate
+  (vertico-resize t)
   :init
-  (ivy-mode 1))
+  (vertico-mode))
 
-(use-package ivy-rich
+(use-package savehist
+  :ensure nil ;; Built-in package
   :init
-  (ivy-rich-mode 1))
+  (savehist-mode))
 
-(use-package counsel
-  :config
-  (counsel-mode 1))
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless)
+	completion-category-defaults nil
+	completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package marginalia
+  :after vertico
+  :init
+  (marginalia-mode))
+
+(use-package emacs
+  :init
+  ;; Add prompt indicator to `completing-read-multiple'.
+  ;; Alternatively try `consult-completing-read-multiple'.
+  (defun crm-indicator (args)
+    (cons (concat "[CRM] " (car args)) (cdr args)))
+  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+
+  ;; Do not allow the cursor in the minibuffer prompt
+  (setq minibuffer-prompt-properties
+	'(read-only t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+  ;; Emacs 28: Hide commands in M-x which do not work in the current mode.
+  ;; Vertico commands are hidden in normal buffers.
+  ;; (setq read-extended-command-predicate
+  ;;       #'command-completion-default-include-p)
+
+  ;; Enable recursive minibuffers
+  (setq enable-recursive-minibuffers t))
 
 (use-package which-key
   :init (which-key-mode)
@@ -128,6 +158,10 @@
   :config
   (format-all-mode))
 
+(use-package org
+  :config
+  (require 'org-tempo))
+
 (use-package org-bullets
   :after org
   :hook (org-mode . org-bullets-mode)
@@ -159,3 +193,16 @@
 (use-package pdf-tools
   :config
   (pdf-loader-install))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(orderless vterm which-key visual-fill-column vertico use-package theme-magic rainbow-delimiters pdf-tools org-roam org-bullets no-littering marginalia magit ivy-rich hydra helpful format-all exwm doom-themes doom-modeline counsel-projectile circadian)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
