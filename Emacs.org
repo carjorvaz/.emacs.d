@@ -100,7 +100,6 @@
       (use-package vertico
 	:custom
 	(vertico-cycle t) ;; Wrap around after reaching the last completion candidate
-	(vertico-resize t)
 	:init
 	(vertico-mode))
 

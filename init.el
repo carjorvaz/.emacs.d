@@ -72,7 +72,6 @@
 (use-package vertico
   :custom
   (vertico-cycle t) ;; Wrap around after reaching the last completion candidate
-  (vertico-resize t)
   :init
   (vertico-mode))
 
@@ -204,16 +203,3 @@
 (use-package pdf-tools
   :config
   (pdf-loader-install))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(nix-mode avy swiper vterm which-key vertico use-package theme-magic rainbow-delimiters projectile pdf-tools org-bullets orderless no-littering marginalia magit helpful format-all circadian)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
