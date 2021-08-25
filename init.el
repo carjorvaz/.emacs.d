@@ -158,6 +158,9 @@
   :config
   (format-all-mode))
 
+(use-package nix-mode
+  :mode "\\.nix\\'")
+
 (use-package org
   :config
   (require 'org-tempo))

@@ -227,6 +227,13 @@
     (format-all-mode))
 #+end_src
 
+** Nix
+
+   #+begin_src emacs-lisp
+     (use-package nix-mode
+       :mode "\\.nix\\'")
+   #+end_src
+
 * Org-mode
 
 ** Initialization
