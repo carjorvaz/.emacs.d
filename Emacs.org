@@ -191,6 +191,20 @@
 (save-place-mode 1)
 #+end_src
 
+* Movement
+
+** swiper
+   #+begin_src emacs-lisp
+     (use-package swiper
+       :bind
+       ("C-s" . 'swiper))
+   #+end_src
+** avy
+   #+begin_src emacs-lisp
+     (use-package avy
+       :bind
+       ("M-s" . avy-goto-char))
+   #+end_src
 * Development
 ** Projectile
 

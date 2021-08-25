@@ -140,6 +140,14 @@
 
 (save-place-mode 1)
 
+(use-package swiper
+  :bind
+  ("C-s" . 'swiper))
+
+(use-package avy
+  :bind
+  ("M-s" . avy-goto-char))
+
 (use-package projectile
   :diminish projectile-mode
   :config (projectile-mode)
@@ -202,7 +210,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(orderless vterm which-key visual-fill-column vertico use-package theme-magic rainbow-delimiters pdf-tools org-roam org-bullets no-littering marginalia magit ivy-rich hydra helpful format-all exwm doom-themes doom-modeline counsel-projectile circadian)))
+   '(nix-mode avy swiper vterm which-key vertico use-package theme-magic rainbow-delimiters projectile pdf-tools org-bullets orderless no-littering marginalia magit helpful format-all circadian)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
