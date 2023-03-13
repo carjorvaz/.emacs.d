@@ -2,7 +2,7 @@
 (setq package-enable-at-startup nil)
 
 ;; Setup package sources
-(setq package-archives '(("elpa"   . "http://elpa.gnu.org/packages/")
+(setq package-archives '(("elpa" . "http://elpa.gnu.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
                          ("melpa" . "https://melpa.org/packages/")))
 
@@ -40,15 +40,6 @@
 ;; Enable column numbers on modeline
 (column-number-mode)
 
-;; Disable line numbers for some modes
-(dolist (mode '(org-mode-hook
-                term-mode-hook
-                shell-mode-hook
-                vterm-mode-hook
-                pdf-view-mode-hook
-                eshell-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
-
 (defvar cjv/default-font-size 160)
 
 (set-face-attribute 'default nil :font "monospace" :height cjv/default-font-size)
@@ -71,8 +62,6 @@
   (setq circadian-themes '((:sunrise . ef-light)
 			   (:sunset  . ef-dark)))
   (circadian-setup))
-
-;; Consider trying ef-day and ef-autumn if I dislike light and dark.
 
 (use-package vertico
   :custom
@@ -169,9 +158,7 @@
   :config
   (pdf-loader-install))
 
-(use-package format-all
-  :config
-  (format-all-mode))
+(use-package format-all)
 
 (use-package nix-mode
   :mode "\\.nix\\'")

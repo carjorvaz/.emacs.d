@@ -47,19 +47,10 @@
   (tool-bar-mode -1)   ; Disable tool bar
   (tooltip-mode -1)    ; Disable tooltips
 #+end_src
-** Line numbers
+** Column numbers
 #+begin_src emacs-lisp
   ;; Enable column numbers on modeline
   (column-number-mode)
-
-  ;; Disable line numbers for some modes
-  (dolist (mode '(org-mode-hook
-                  term-mode-hook
-                  shell-mode-hook
-                  vterm-mode-hook
-                  pdf-view-mode-hook
-                  eshell-mode-hook))
-    (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
 ** Font Configuration
 #+begin_src emacs-lisp
