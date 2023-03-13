@@ -210,9 +210,7 @@
 #+end_src
 ** format-all
 #+begin_src emacs-lisp
-  (use-package format-all
-    :config
-    (format-all-mode))
+  (use-package format-all)
 #+end_src
 * Programming
 ** Nix
