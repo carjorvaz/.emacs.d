@@ -1,8 +1,8 @@
 #+TITLE: Emacs Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el :mkdirp yes
 
-* Package system initialization
-
+* General
+** Package system initialization
 #+begin_src emacs-lisp
   (require 'package)
   (setq package-enable-at-startup nil)
