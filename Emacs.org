@@ -192,7 +192,11 @@
 #+end_src
 ** magit
 #+begin_src emacs-lisp
-  (use-package magit)
+  (use-package magit
+    :custom
+    (magit-define-global-key-bindings t)
+    :bind
+    ("C-c g" . magit-file-dispatch))
 #+end_src
 ** vterm
 #+begin_src emacs-lisp
