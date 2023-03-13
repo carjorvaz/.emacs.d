@@ -25,6 +25,15 @@
   (require 'use-package)
   (setq use-package-always-ensure t)
 #+end_src
+** Automatic package updates
+#+begin_src emacs-lisp
+  (use-package auto-package-update
+    :custom
+    (auto-package-update-prompt-before-updatex t)
+    (auto-package-update-delete-old-versions t)
+    :config
+    (auto-package-update-maybe))
+#+end_src
 ** Basic UI configuration
 #+begin_src emacs-lisp
   ;; Disable default init screen
