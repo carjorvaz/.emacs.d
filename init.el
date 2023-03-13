@@ -19,6 +19,13 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+(use-package auto-package-update
+  :custom
+  (auto-package-update-prompt-before-updatex t)
+  (auto-package-update-delete-old-versions t)
+  :config
+  (auto-package-update-maybe))
+
 ;; Disable default init screen
 (setq inhibit-startup-message t)
 
@@ -48,26 +55,24 @@
 (set-face-attribute 'fixed-pitch nil :font "monospace" :height cjv/default-font-size)
 (set-face-attribute 'variable-pitch nil :font "monospace" :height cjv/default-font-size :weight 'regular);
 
+(use-package ef-themes)
+
 ;; Sets up solar for use with circadian
 (use-package solar
   :ensure nil ; built-in package
   :config
-  (setq calendar-latitude 38.72 ; Lisbon coordinates
-        calendar-longitude -9.14))
+  (setq calendar-latitude 38.7 ; Lisbon, Portugal coordinates
+	calendar-longitude -9.14))
 
 ;; Sets a light theme during the day and a dark theme during the night
 (use-package circadian
   :after solar
   :config
-  (setq circadian-themes '((:sunrise . modus-operandi)
-                           (:sunset  . modus-vivendi)))
+  (setq circadian-themes '((:sunrise . ef-light)
+			   (:sunset  . ef-dark)))
   (circadian-setup))
 
-;; Automatically applies emacs's theme to the rest of the system
-;; Requires pywal
-(use-package theme-magic
-  :config
-  (theme-magic-export-theme-mode))
+;; Consider trying ef-day and ef-autumn if I dislike light and dark.
 
 (use-package vertico
   :custom
@@ -81,10 +86,10 @@
   (savehist-mode))
 
 (use-package orderless
-  :init
-  (setq completion-styles '(orderless)
-	completion-category-defaults nil
-	completion-category-overrides '((file (styles partial-completion)))))
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package marginalia
   :after vertico
@@ -103,11 +108,6 @@
   (setq minibuffer-prompt-properties
 	'(read-only t cursor-intangible t face minibuffer-prompt))
   (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
-
-  ;; Emacs 28: Hide commands in M-x which do not work in the current mode.
-  ;; Vertico commands are hidden in normal buffers.
-  ;; (setq read-extended-command-predicate
-  ;;       #'command-completion-default-include-p)
 
   ;; Enable recursive minibuffers
   (setq enable-recursive-minibuffers t))
@@ -157,9 +157,17 @@
     (setq projectile-project-search-path '("~/Documents/Code")))
   (setq projectile-switch-project-action #'projectile-dired))
 
-(use-package magit)
+(use-package magit
+  :custom
+  (magit-define-global-key-bindings t)
+  :bind
+  ("C-c g" . magit-file-dispatch))
 
 (use-package vterm)
+
+(use-package pdf-tools
+  :config
+  (pdf-loader-install))
 
 (use-package format-all
   :config
@@ -192,14 +200,13 @@
 
 ;; Automatically tangle Emacs.org when saved
 (defun cjv/org-babel-tangle-config ()
-  (when (string-equal (buffer-file-name)
-                      (expand-file-name "~/.emacs.d/Emacs.org"))
+  (when (or (string-equal (buffer-file-name)
+			  (expand-file-name "~/.emacs.d/Emacs.org"))
+	    (string-equal (buffer-file-name)
+			  (expand-file-name "~/.config/emacs/Emacs.org")))
+
     ;; Dynamic scoping to the rescue
     (let ((org-confirm-babel-evaluate-nil))
       (org-babel-tangle))))
 
 (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'cjv/org-babel-tangle-config)))
-
-(use-package pdf-tools
-  :config
-  (pdf-loader-install))
