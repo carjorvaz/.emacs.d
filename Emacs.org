@@ -71,19 +71,21 @@
 #+end_src
 ** Theming
 #+begin_src emacs-lisp
+  (use-package ef-themes)
+
   ;; Sets up solar for use with circadian
   (use-package solar
     :ensure nil ; built-in package
     :config
-    (setq calendar-latitude 38.72 ; Lisbon coordinates
-          calendar-longitude -9.14))
+    (setq calendar-latitude 38.7 ; Lisbon, Portugal coordinates
+	  calendar-longitude -9.14))
 
   ;; Sets a light theme during the day and a dark theme during the night
   (use-package circadian
     :after solar
     :config
-    (setq circadian-themes '((:sunrise . modus-operandi)
-                             (:sunset  . modus-vivendi)))
+    (setq circadian-themes '((:sunrise . ef-light)
+			     (:sunset  . ef-dark)))
     (circadian-setup))
 
 #+end_src
