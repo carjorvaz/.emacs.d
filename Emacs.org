@@ -80,7 +80,7 @@
     (circadian-setup))
 
 #+end_src
-** vertico
+** Completion
 #+begin_src emacs-lisp
   (use-package vertico
     :custom
