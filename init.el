@@ -59,8 +59,8 @@
 (use-package circadian
   :after solar
   :config
-  (setq circadian-themes '((:sunrise . ef-light)
-			   (:sunset  . ef-dark)))
+  (setq circadian-themes '((:sunrise . ef-day)
+			   (:sunset  . ef-night)))
   (circadian-setup))
 
 (use-package vertico
