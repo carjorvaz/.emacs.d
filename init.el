@@ -128,14 +128,6 @@
 
 (save-place-mode 1)
 
-(use-package swiper
-  :bind
-  ("C-s" . 'swiper))
-
-(use-package avy
-  :bind
-  ("M-s" . avy-goto-char))
-
 (use-package projectile
   :diminish projectile-mode
   :config (projectile-mode)
@@ -207,7 +199,7 @@
 	 ("C-c n i" . org-roam-node-insert)
 	 ("C-c n c" . org-roam-capture)
 	 ;; Dailies
-	 ("C-c n t" . org-roam-dailies-find-today))
+	 ("C-c n t" . org-roam-dailies-goto-today))
   :config
   ;; If you're using a vertical completion framework, you might want a more informative completion interface
   (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
