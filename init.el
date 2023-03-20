@@ -40,6 +40,8 @@
 ;; Enable column numbers on modeline
 (column-number-mode)
 
+(setq-default indent-tabs-mode nil)
+
 (defvar cjv/default-font-size 140)
 
 (set-face-attribute 'default nil :font "monospace" :height cjv/default-font-size)

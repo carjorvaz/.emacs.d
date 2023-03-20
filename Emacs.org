@@ -52,6 +52,10 @@
   ;; Enable column numbers on modeline
   (column-number-mode)
 #+end_src
+** Indentation with spaces by default
+#+begin_src emacs-lisp
+  (setq-default indent-tabs-mode nil)
+#+end_src
 ** Font Configuration
 #+begin_src emacs-lisp
   (defvar cjv/default-font-size 140)
